@@ -21,6 +21,7 @@ nav:
   - ADR - CI Tool: adr-ci-tool.md
   - Environment Matrix: environment-matrix.md
   - Runbook Template: runbook-template.md
+  - Security Setup: security-setup.md
 
 markdown_extensions:
   - tables
