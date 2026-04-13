@@ -1,0 +1,33 @@
+name: Build Docs
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t healthapp-docs .
+
+      - name: Verify Build Success
+        run: |
+          echo "Docs image built successfully"
+          docker images healthapp-docs
+
+      - name: Run Container Health Check
+        run: |
+          docker run -d -p 84:80 --name docs-test healthapp-docs
+          sleep 5
+          curl -f http://localhost:84 || exit 1
+          docker stop docs-test
+          docker rm docs-test

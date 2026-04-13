@@ -1,0 +1,29 @@
+site_name: HealthApp Project Docs
+site_description: Documentation for the HealthApp deployment pipeline
+site_author: Kwamina Hanson 
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: cyan
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.share
+
+nav:
+  - Home: index.md
+  - Team Roster: team-roster.md
+  - ADR - CI Tool: adr-ci-tool.md
+  - Environment Matrix: environment-matrix.md
+  - Runbook Template: runbook-template.md
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences

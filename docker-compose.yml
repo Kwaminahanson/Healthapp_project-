@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+
+  # PRODUCTION: multi-stage build → nginx → port 84
+  docs:
+    build: .
+    ports:
+      - "84:80"
+    restart: unless-stopped
+
+  # DEV: live reload server → port 8084
+  docs-dev:
+    image: squidfunk/mkdocs-material:latest
+    ports:
+      - "8084:8000"
+    volumes:
+      - .:/docs
+    command: serve --dev-addr=0.0.0.0:8000
